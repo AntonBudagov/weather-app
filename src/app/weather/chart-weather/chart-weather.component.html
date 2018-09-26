@@ -1,0 +1,21 @@
+
+
+<form>
+  <div class="form-group">
+    <div>
+      <input class="form-control" type="text" placeholder="Enter city name" id="city" #cityName name="cityname">
+    </div>
+    <button class="btn btn-primary" (click)="getCity(cityName.value)" type="submit">
+      Forecast
+    </button>
+  </div>
+
+
+</form>
+<div class="chart" *ngIf="chart" [hidden]="notFound">
+  <canvas id="canvas">{{ chart }}</canvas>
+</div>
+<div class="chart" *ngIf="notFound">
+  <h1>404</h1>
+</div>
+
