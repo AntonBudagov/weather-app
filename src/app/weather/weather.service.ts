@@ -17,6 +17,6 @@ export class WeatherService {
       // if not search term, return empty hero array.
       return;
     }
-    return this._app.get(API_BASE_URL, '2', 'metric', city);
+    return this._app.get(API_BASE_URL, '80', 'metric', city);
   }
 }
