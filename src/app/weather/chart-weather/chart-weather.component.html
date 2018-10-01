@@ -1,21 +1,65 @@
-
-
-<form>
-  <div class="form-group">
-    <div>
-      <input class="form-control" type="text" placeholder="Enter city name" id="city" #cityName name="cityname">
+<div class="container">
+  <header>
+    <div class="wrap header__wrap">
+      <div class="logo">Forecast</div>
+      <form>
+        <div class="form-group">
+          <div>
+            <input class="form-control" type="text"
+                   placeholder="Enter city name" id="city"
+                   #cityName name="cityname"
+                   (keydown.enter)="getCity(cityName.value)">
+          </div>
+          <!--<button class="btn btn-primary" (click)="getCity(cityName.value)" type="submit">-->
+            <!--Forecast-->
+          <!--</button>-->
+        </div>
+      </form>
     </div>
-    <button class="btn btn-primary" (click)="getCity(cityName.value)" type="submit">
-      Forecast
-    </button>
+  </header>
+  <div class="content">
+    <div class="wrap chart__background">
+
+      <div class="chart__header" [hidden]="notFound">
+        <div class="chart__day">
+          {{toDay}}
+        </div>
+        <div class="chart__title">
+          <h1>{{weather.city.name}}, {{weather.city.country}}</h1>
+        </div>
+        <div class="chart__temp">
+          {{toDayWeather.temp.toFixed(1)}}°C
+
+        </div>
+        <p class="chart__desc">{{weather.list[0].weather[0].description}}, {{statusDay}}</p>
+        <ul>
+          <li>
+            <b>Pressure:</b> {{toDayWeather.pressure}}mBar
+          </li>
+          <li>
+            <b>Humidity:</b> {{toDayWeather.humidity}}%
+          </li>
+          <li><b>Wind Speed:</b> {{weather.list[0].wind.speed}}m/s</li>
+          <li><b>Clouds:</b> {{weather.list[0].clouds.all}}%</li>
+        </ul>
+      </div>
+      <div class="chart chart__header" *ngIf="notFound">
+        <div class="chart__title">
+          <h1>Sorry {{cityName.value}} not found</h1>
+        </div>
+      </div>
+
+      <div class="chart" *ngIf="chart" [hidden]="notFound">
+        <canvas id="canvas">{{ chart }}</canvas>
+      </div>
+      <div class="chart" *ngIf="chartWind" [hidden]="notFound">
+        <canvas id="canvas2">{{ chartWind }}</canvas>
+      </div>
+
+    </div>
   </div>
+</div>
 
 
-</form>
-<div class="chart" *ngIf="chart" [hidden]="notFound">
-  <canvas id="canvas">{{ chart }}</canvas>
-</div>
-<div class="chart" *ngIf="notFound">
-  <h1>404</h1>
-</div>
+
 

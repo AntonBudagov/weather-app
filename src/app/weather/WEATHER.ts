@@ -1,16 +1,28 @@
 export interface WEATHER {
   cnt?: number;
-  list?: Array<object>;
+  list?: {
+    wind: {
+      speed: number
+    },
+    sys: {},
+    weather: {},
+    clouds: {
+      all: number
+    },
+    main: {}
+  };
   main?: Object;
   city?: {
-    name: string
+    name: string;
+    country: string;
   };
 }
-export interface TEMP {
-  main?: {
-    temp: number;
-    temp_kf: number;
-    temp_max: number;
-    temp_min: number;
-  };
+
+export interface TODAY {
+  temp: number;
+  temp_kf?: number;
+  temp_max?: number;
+  temp_min?: number;
+  pressure: number;
+  humidity: number;
 }

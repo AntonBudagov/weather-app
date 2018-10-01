@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {WeatherModule} from './weather/weather.module';
-import {AppService} from './app.service';
+
 
 @NgModule({
   declarations: [
